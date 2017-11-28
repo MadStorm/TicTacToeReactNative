@@ -1,15 +1,40 @@
 import React, {Component} from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+
 import Header from './components/Header'
+import GameBoard from './components/GameBoard'
 
 export default class App extends Component {
+
+constructor(props){
+  super(props)
+  this.state={ gameStarted: false}
+}
+
+startGame(){
+  this.setState({ gameStarted: true})
+}
+
+
   render() {
+    const { gameStarted } = this.state
     return (
       <View style={styles.container}>
         <Header />
-        <Text style={styles.welcome}> Welcome to the game! </Text>
-        <Text style={styles.instructions}> Click here to start </Text>
+        {
+          !gameStarted ? (
+            <GameBoard />
+          ) : (
+            <View>
+              <Text style={styles.welcome}> Welcome to the game! </Text>
+              <TouchableOpacity onPress={() => this.startGame()}>
+              <Text style={styles.instructions}> Click here to start </Text>
+              </TouchableOpacity>
+            </View>
+          )
+        }
       </View>
+
     );
   }
 }
@@ -22,10 +47,11 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 20,
-    margin: 10,
+    marginTop: 50,
   },
   instructions: {
-    color: '#333333',
+    marginTop: 20,
+    color: 'grey',
     marginBottom: 5,
   },
 })
