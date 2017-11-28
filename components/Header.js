@@ -6,8 +6,7 @@ export default class Header extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}> Welcome to the game! </Text>
-        <Text style={styles.instructions}> Click here to start </Text>
+        <Text style={styles.title}> Tic Tac Toe </Text>
       </View>
     )
   }
@@ -17,15 +16,14 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     backgroundColor: 'skyblue',
+    flexDirection: 'row',
   },
-  welcome: {
+  title: {
+    color: '#fff',
+    fontWeight: 'bold',
+    flex: 1,
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 })
