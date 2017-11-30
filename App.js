@@ -1,20 +1,27 @@
-import React, {Component} from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React, { Component } from 'react'
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity
+} from 'react-native'
 
 import Header from './components/Header'
 import GameBoard from './components/GameBoard'
 
 export default class App extends Component {
+  state: {
+    gameStarted: boolean
+  };
 
-constructor(props){
-  super(props)
-  this.state={ gameStarted: false}
-}
+  constructor() {
+    super()
+    this.state={ gameStarted: false }
+  }
 
-startGame(){
-  this.setState({ gameStarted: true})
-}
-
+  startGame() {
+    this.setState({ gameStarted: true })
+  }
 
   render() {
     const { gameStarted } = this.state
@@ -22,20 +29,23 @@ startGame(){
       <View style={styles.container}>
         <Header />
         {
-          !gameStarted ? (
+          gameStarted ? (
             <GameBoard />
           ) : (
             <View>
-              <Text style={styles.welcome}> Welcome to the game! </Text>
+              <Text style={styles.welcome}>
+                Welcome to the game!
+              </Text>
               <TouchableOpacity onPress={() => this.startGame()}>
-              <Text style={styles.instructions}> Click here to start </Text>
+                <Text style={styles.instructions}>
+                  Touch here to start
+                </Text>
               </TouchableOpacity>
             </View>
           )
         }
       </View>
-
-    );
+    )
   }
 }
 
@@ -50,6 +60,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   instructions: {
+    textAlign: 'center',
     marginTop: 20,
     color: 'grey',
     marginBottom: 5,
